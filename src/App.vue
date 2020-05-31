@@ -1,20 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <main id="app">
+    <Home />
+  </main>
 </template>
+
+<script>
+import Home from "@/components/Home.vue";
+export default {
+  name: "App",
+  components: {
+    Home,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Ubuntu, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #d1d1d1;
+}
+
+body {
+  background-color: #161616;
 }
 
 #nav {
@@ -28,5 +38,22 @@
       color: #42b983;
     }
   }
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+.card {
+  margin: 10px 15px;
+}
+
+h1 {
+  color: #cfba58;
+  text-transform: uppercase;
+  font-size: 4em;
+  font-weight: 100;
 }
 </style>
