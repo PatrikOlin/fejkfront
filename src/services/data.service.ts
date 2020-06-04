@@ -5,12 +5,12 @@ class DataService {
     return http.get("/people?amount=" + amount);
   }
 
-  getCompanies() {
-    return http.get("/companies");
+  getCompanies(amount = 1) {
+    return http.get("/companies?amount=" + amount);
   }
 
-  getArticles() {
-    return http.get("/articles");
+  getArticles(amount = 1) {
+    return http.get("/articles?amount=" + amount);
   }
 }
 
