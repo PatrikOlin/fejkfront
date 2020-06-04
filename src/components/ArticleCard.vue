@@ -1,5 +1,18 @@
 <template>
   <main>
+    <div class="cardHeader">
+      <font-awesome-icon
+        class="cardHeaderIcon"
+        :icon="['fas', 'boxes']"
+        size="2x"
+      />
+      <font-awesome-icon
+        class="cardHeaderIcon cardHeaderCopyIcon"
+        :icon="['far', 'clone']"
+        size="lg"
+        v-on:click="copyArticle()"
+      />
+    </div>
     <table class="dataTable">
       <tr>
         <td><h4>Id:</h4></td>
@@ -62,6 +75,10 @@ export default class ArticleCard extends Vue {
 
   onCopy(e: any) {
     console.log("copied", e);
+  }
+
+  copyArticle() {
+    this.$copyText(JSON.stringify(this.article));
   }
 }
 </script>

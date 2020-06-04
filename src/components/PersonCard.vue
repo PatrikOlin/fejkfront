@@ -1,5 +1,18 @@
 <template>
   <main>
+    <div class="cardHeader">
+      <font-awesome-icon
+        class="cardHeaderIcon"
+        :icon="['fas', 'user']"
+        size="2x"
+      />
+      <font-awesome-icon
+        class="cardHeaderIcon cardHeaderCopyIcon"
+        :icon="['far', 'clone']"
+        size="lg"
+        v-on:click="copyPerson()"
+      />
+    </div>
     <table class="dataTable">
       <tr>
         <td><h4>Name:</h4></td>
@@ -85,6 +98,10 @@ export default class PersonCard extends Vue {
   onCopy(e: any) {
     console.log("copied", e);
   }
+
+  copyPerson() {
+    this.$copyText(JSON.stringify(this.person));
+  }
 }
 </script>
 
@@ -96,60 +113,5 @@ h3 {
 ul {
   list-style-type: none;
   padding: 0;
-}
-
-h1 {
-  color: #cfba58;
-  text-transform: uppercase;
-  font-size: 4em;
-  font-weight: 100;
-}
-
-h4 {
-  margin: unset;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-
-table {
-  border-collapse: collapse;
-  margin: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-th {
-  background: #ccc;
-}
-
-th,
-td {
-  border: 0px solid #ccc;
-  padding: 15px 20px;
-  text-align: left;
-}
-
-tr {
-  padding: 25px;
-}
-
-tr:nth-child(even) {
-  background: #101010;
-}
-
-.copyIcon {
-  transition: all 0.15s ease-out;
-  cursor: pointer;
-}
-
-.copyIcon:hover {
-  transform: scale(1.2);
 }
 </style>

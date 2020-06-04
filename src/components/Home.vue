@@ -185,16 +185,20 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss">
+$yellow: #ece31a;
+$white: #fff;
+$black: #000;
+
 #app {
   font-family: Ubuntu, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #d1d1d1;
+  color: $black;
 }
 
 body {
-  background-color: #161616;
+  background-color: $yellow;
 }
 
 #nav {
@@ -219,14 +223,39 @@ body {
 }
 
 .card {
+  background-color: $white;
   margin: 10px 15px;
+  border-radius: 15px;
+  color: $black;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardHeaderIcon {
+  color: $black;
+  margin: 16px 16px 0px 16px;
+}
+
+.cardHeaderCopyIcon {
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+}
+
+.cardHeaderCopyIcon:hover {
+  transform: scale(1.2);
 }
 
 h1 {
-  color: #cfba58;
+  color: $white;
   text-transform: uppercase;
-  font-size: 4em;
-  font-weight: 100;
+  font-size: 10em;
+  font-weight: 800;
+  margin: 1.5rem;
+  padding: unset;
 }
 
 h4 {
@@ -239,7 +268,7 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: $white;
 }
 
 .controls {
@@ -254,11 +283,17 @@ a {
 
 .ctrlIcon {
   padding-right: 15px;
-  color: #cfba58;
+  color: $black;
 }
 
 .backspaceIcon {
+  transition: all 0.15s ease-out;
   padding-left: 10px;
+  color: $white;
+}
+
+.backspaceIcon:hover {
+  transform: scale(1.2);
 }
 
 table {
@@ -269,7 +304,7 @@ table {
 }
 
 th {
-  background: #ccc;
+  background: $white;
 }
 
 th,
@@ -284,7 +319,7 @@ tr {
 }
 
 tr:nth-child(even) {
-  background: #101010;
+  background: darken($white, 5%);
 }
 
 .copyIcon {

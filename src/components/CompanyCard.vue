@@ -1,5 +1,18 @@
 <template>
   <main>
+    <div class="cardHeader">
+      <font-awesome-icon
+        class="cardHeaderIcon"
+        :icon="['fas', 'building']"
+        size="2x"
+      />
+      <font-awesome-icon
+        class="cardHeaderIcon cardHeaderCopyIcon"
+        :icon="['far', 'clone']"
+        size="lg"
+        v-on:click="copyCompany()"
+      />
+    </div>
     <table class="dataTable">
       <tr>
         <td><h4>Name:</h4></td>
@@ -55,6 +68,10 @@ export default class CompanyCard extends Vue {
 
   onCopy(e: any) {
     console.log("copied", e);
+  }
+
+  copyCompany() {
+    this.$copyText(JSON.stringify(this.company));
   }
 }
 </script>
