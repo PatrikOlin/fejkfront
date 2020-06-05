@@ -11,7 +11,7 @@ export interface Company {
   companyName: string;
   orgNum: string;
   vatCode: string;
-  address?: string;
+  address: string;
   beneficialOwner?: string;
 }
 

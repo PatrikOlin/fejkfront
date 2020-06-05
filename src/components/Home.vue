@@ -75,22 +75,25 @@
       </div>
     </section>
     <section class="cardContainer">
-      <PersonCard
+      <Card
         v-for="person in people"
         :key="person.name"
-        :person="person"
+        :data="person"
+        :type="'person'"
         class="card"
       />
-      <CompanyCard
+      <Card
         v-for="company in companies"
         :key="company.companyName"
-        :company="company"
+        :data="company"
+        :type="'company'"
         class="card"
       />
-      <ArticleCard
+      <Card
         v-for="article in articles"
         :key="article.id"
-        :article="article"
+        :data="article"
+        :type="'article'"
         class="card"
       />
     </section>
@@ -102,6 +105,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import PersonCard from "@/components/PersonCard.vue";
 import CompanyCard from "@/components/CompanyCard.vue";
 import ArticleCard from "@/components/ArticleCard.vue";
+import Card from "@/components/Card.vue";
 import DataService from "@/services/data.service";
 import { Person, Company, Article } from "@/types";
 
@@ -110,6 +114,7 @@ import { Person, Company, Article } from "@/types";
     PersonCard,
     CompanyCard,
     ArticleCard,
+    Card,
   },
 })
 export default class Home extends Vue {
