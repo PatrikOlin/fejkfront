@@ -27,17 +27,25 @@
       />
     </div>
     <table class="dataTable">
-      <tr v-for="(value, key, index) in data" :key="index">
-        <td>
-          <h4>{{ key }}:</h4>
-        </td>
-        <td>{{ value }}</td>
-        <td>
-          <span v-clipboard:copy="value" v-clipboard:success="onCopy"
-            ><font-awesome-icon class="copyIcon" :icon="['far', 'clone']" />
-          </span>
-        </td>
-      </tr>
+      <template v-for="(value, key, index) in data">
+        <tr
+          :key="index"
+          v-on:click="toggleOpen(value)"
+          :class="{ opened: open }"
+        >
+          <td>
+            <h4>{{ key }}:</h4>
+          </td>
+          <td>
+            {{ isPerson(value) ? value.name : value }}
+          </td>
+          <td>
+            <span v-clipboard:copy="value" v-clipboard:success="onCopy"
+              ><font-awesome-icon class="copyIcon" :icon="['far', 'clone']" />
+            </span>
+          </td>
+        </tr>
+      </template>
     </table>
   </main>
 </template>
@@ -50,6 +58,7 @@ import { Company, Person, Article } from "@/types";
 export default class CompanyCard extends Vue {
   @Prop() private data!: Company | Person | Article;
   @Prop() private type!: string;
+  private open = false;
 
   onCopy(e: any) {
     console.log("copied", e);
@@ -58,7 +67,21 @@ export default class CompanyCard extends Vue {
   copyData() {
     this.$copyText(JSON.stringify(this.data));
   }
+
+  toggleOpen(value: any) {
+    if (this.isPerson(value)) {
+      this.open = !this.open;
+    }
+  }
+
+  isPerson(x: any): x is Person {
+    return (x as Person).name !== undefined;
+  }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.opened {
+  background-color: yellow;
+}
+</style>

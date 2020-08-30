@@ -14,7 +14,7 @@
           id="numOfPeople"
           name="numOfPeople"
         >
-          <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+          <option v-for="(n, i) in 11" :key="i" :value="i">{{ i }}</option>
         </select>
         <font-awesome-icon
           class="backspaceIcon"
@@ -35,7 +35,7 @@
           id="numOfCompanies"
           name="numOfCompanies"
         >
-          <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+          <option v-for="(n, i) in 11" :key="i" :value="i">{{ i }}</option>
         </select>
         <font-awesome-icon
           class="backspaceIcon"
@@ -56,7 +56,7 @@
           id="numOfArticles"
           name="numOfArticles"
         >
-          <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+          <option v-for="(n, i) in 11" :key="i" :value="i">{{ i }}</option>
         </select>
         <font-awesome-icon
           class="backspaceIcon"
@@ -130,15 +130,27 @@ export default class Home extends Vue {
   }
 
   onNumOfPeopleChange() {
-    this.loadPeople(this.numOfPeople);
+    if (this.numOfPeople !== 0) {
+      this.loadPeople(this.numOfPeople);
+    } else {
+      this.people = [];
+    }
   }
 
   onNumOfCompaniesChange() {
-    this.loadCompanies(this.numOfCompanies);
+    if (this.numOfCompanies !== 0) {
+      this.loadCompanies(this.numOfCompanies);
+    } else {
+      this.companies = [];
+    }
   }
 
   onNumOfArticlesChange() {
-    this.loadArticles(this.numOfArticles);
+    if (this.numOfArticles !== 0) {
+      this.loadArticles(this.numOfArticles);
+    } else {
+      this.articles = [];
+    }
   }
 
   resetPeople() {
@@ -177,7 +189,21 @@ export default class Home extends Vue {
 
   loadCompanies(amount: number) {
     DataService.getCompanies(amount).then(res => {
-      this.companies = res.data;
+      const companies: Company[] = [];
+      res.data.forEach((c: any) => {
+        const comp = {
+          companyName: c.companyName,
+          orgNum: c.orgNum,
+          vatCode: c.vatCode,
+          address: c.address,
+          bankgiro: c.bankgiro,
+          contact: c.CEO.name,
+          contactEmail: c.CEO.email,
+          contactPhone: c.CEO.phone,
+        };
+        companies.push(comp);
+      });
+      this.companies = companies;
     });
   }
 

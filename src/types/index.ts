@@ -12,7 +12,10 @@ export interface Company {
   orgNum: string;
   vatCode: string;
   address: string;
-  beneficialOwner?: string;
+  bankgiro: string;
+  contact: string;
+  contactEmail: string;
+  contactPhone: string;
 }
 
 export interface Article {
