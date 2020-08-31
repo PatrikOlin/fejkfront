@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-  // baseURL: "https://api.fejk.company/v1",
-  baseURL: "http://localhost:8124/v1",
+  baseURL: process.env.API_URL,
   headers: { "Content-type": "applicationa/json" },
 });
